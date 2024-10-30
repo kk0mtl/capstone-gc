@@ -166,5 +166,5 @@ io.on('connection', (socket) => {
 });
 
 http.listen(PORT, () => {
-  console.log('Connected : 3001');
+  console.log(`Connected : ${PORT}`);
 });

@@ -1,9 +1,10 @@
 import axios from 'axios';
-import config from "../../config";
+//import config from "../../config";
 
 export const fetchChatbotResponse = async (message) => {
     const API_URL = 'https://api.openai.com/v1/chat/completions';
-    const API_KEY = config.OpenAiKey;
+    //const API_KEY = config.OpenAiKey;
+    const API_KEY = process.env.REACT_APP_GPT_KEY;
 
     try {
         const response = await axios.post(API_URL, {
