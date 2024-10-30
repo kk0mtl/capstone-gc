@@ -2,7 +2,8 @@
   "scripts": {
     "prepare-client": "cd client && npm install && npm run build",
     "prepare-server": "cd server && npm install",
-    "start": "cd server && npm install && cd ../client && npm install && npm run build"
+    "start": "cd server && npm install && cd ../client && npm install && npm run build",
+    "heroku-postbuild": "cd server && npm install && cd ../client && npm install && npm run build"
   },
   "dependencies": {
     "cross-env": "^7.0.3",
