@@ -225,7 +225,7 @@ const ChatButton = styled.div`
   margin-left: 6px;
 
   img {
-    background-color: white;
+    background-color: black;
     width: 28px;
     height: 28px;
     margin-bottom: -4px;
