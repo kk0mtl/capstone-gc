@@ -39,46 +39,41 @@ const Chat = ({ display, roomId }) => {
       <TopHeader>Chat</TopHeader>
       <ChatArea>
         <MessageList>
-          {msg &&
-            msg.map(({ sender, msg }, idx) => {
-              if (sender !== currentUser) {
-                return (
-                  <Message key={idx}>
-                    <strong>{sender}</strong>
+          {msg.map(({ sender, msg }, idx) => {
+            if (sender !== currentUser) {
+              return (
+                <Message key={idx}>
+                  <strong>{sender}</strong> {/* 사용자 이름 */}
+                  <div>
                     <p>{msg}</p>
-                    <Timestamp
-                      style={{
-                        "margin-right": "auto",
-                      }}
-                    >
+                    <Timestamp>
                       {new Date().toLocaleString("ko-KR", {
                         hour: "2-digit",
                         minute: "2-digit",
                         hour12: false,
                       })}
                     </Timestamp>
-                  </Message>
-                );
-              } else {
-                return (
-                  <UserMessage key={idx}>
-                    <strong>{sender}</strong>
-                    <p>{msg}</p>
-                    <Timestamp
-                      style={{
-                        "margin-left": "auto",
-                      }}
-                    >
+                  </div>
+                </Message>
+              );
+            } else {
+              return (
+                <UserMessage key={idx}>
+                  <strong>{sender}</strong> {/* 사용자 이름 */}
+                  <div>
+                    <Timestamp>
                       {new Date().toLocaleString("ko-KR", {
                         hour: "2-digit",
                         minute: "2-digit",
                         hour12: false,
                       })}
                     </Timestamp>
-                  </UserMessage>
-                );
-              }
-            })}
+                    <p>{msg}</p>
+                  </div>
+                </UserMessage>
+              );
+            }
+          })}
           <div style={{ float: "left", clear: "both" }} ref={messagesEndRef} />
         </MessageList>
       </ChatArea>
@@ -90,11 +85,6 @@ const Chat = ({ display, roomId }) => {
     </ChatContainer>
   );
 };
-
-const Timestamp = styled.div`
-  font-size: 12px;
-  color: gray;
-`;
 
 const ChatContainer = styled.div`
   display: flex;
@@ -153,42 +143,57 @@ const Message = styled.div`
   font-family: "NunitoMedium";
 
   > strong {
-    margin-left: 3px;
+    margin-bottom: 5px;
+    font-size: 14px;
   }
 
-  > p {
+  > div {
+    display: flex;
+    align-items: center;
+    margin-left: -5px;
+  }
+
+  > div > p {
     max-width: 65%;
     width: auto;
     padding: 9px;
-    margin-top: 3px;
-    border: 1px solid rgb(78, 161, 211, 0.3);
+    margin-right: 10px;
+    border: 1px solid rgba(78, 161, 211, 0.3);
     border-radius: 15px;
     box-shadow: 0px 0px 3px black;
     font-size: 14px;
+    background-color: white;
   }
 `;
 
 const UserMessage = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 100%;
   font-size: 16px;
   margin-top: 15px;
   text-align: right;
   font-family: "NunitoMedium";
 
   > strong {
-    margin-right: 35px;
+    margin-bottom: 5px;
+    margin-right: 8px;
+    font-size: 14px;
   }
 
-  > p {
+  > div {
+    display: flex;
+    align-items: center;
+    margin-right: -8px;
+  }
+
+  > div > p {
     max-width: 65%;
     width: auto;
     padding: 9px;
-    margin-top: 3px;
-    margin-right: 30px;
-    border: 1px solid rgb(78, 161, 211, 0.3);
+    margin-right: 10px;
+    border: 1px solid rgba(78, 161, 211, 0.3);
     border-radius: 15px;
     background-color: black;
     color: white;
@@ -196,6 +201,14 @@ const UserMessage = styled.div`
     text-align: left;
   }
 `;
+
+const Timestamp = styled.div`
+  font-size: 12px;
+  color: gray;
+  margin-right: 5px;
+  margin-top: 20px;
+`;
+
 
 const BottomInput = styled.input`
   bottom: 0;

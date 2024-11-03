@@ -124,7 +124,7 @@ const Dialog = ({ display }) => {
   return (
     <>
       <DialogContainer style={{ display: display ? "block" : "none" }}>
-        <DialogHeader>📁 Dialog 📁</DialogHeader>
+        <DialogHeader>Dialog</DialogHeader>
         <TranscriptList>
           {messages.map((message, index) => (
             <FinalTranscriptContainer key={index}>

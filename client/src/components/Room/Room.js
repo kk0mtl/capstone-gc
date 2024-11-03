@@ -479,10 +479,11 @@ const Room = (props) => {
     // RAG 활성화 -> Flask 서버에 요청
     if (isRagEnabled) {
       try {
-        const response = await fetch(`http://localhost:8000/rag_search`, {
+        const response = await fetch(`https://prawn-leading-sensibly.ngrok-free.app/rag_search`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'ngrok-skip-browser-warning': '69420',
           },
           body: JSON.stringify({ query: inputValue }),
         });
@@ -687,6 +688,9 @@ const Message = styled.div`
     props.from === "user" ? "#f7e191" : "#e1e1e1"};
   align-self: ${(props) => (props.from === "user" ? "flex-end" : "flex-start")};
   max-width: 70%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
 `;
 
 const InputContainer = styled.div`
