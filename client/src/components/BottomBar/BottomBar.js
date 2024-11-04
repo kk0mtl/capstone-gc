@@ -18,13 +18,12 @@ const BottomBar = ({
   const currentUser = sessionStorage.getItem("user");
 
   const handleDocsClick = useCallback(() => {
-    const url = `https://ai-doc02-5391d95f8f63.herokuapp.com/?userName=${currentUser}&roomId=${roomId}`;
+    const url = `https://ai-doc-4b6051adc54a.herokuapp.com/?userName=${currentUser}&roomId=${roomId}`;
     window.open(url, "_blank");
   }, []);
 
   return (
     <Bar>
-      <Left></Left>
       <Center>
         <CameraButton onClick={toggleCameraAudio} data-switch="video">
           <div>
@@ -83,8 +82,13 @@ const BottomBar = ({
           </div>
           챗봇
         </ChatButton>
+        <StopButton onClick={goToBack}>
+          <div>
+            <FaIcon className="fas fa-sign-out-alt"></FaIcon>
+          </div>
+          나가기
+        </StopButton>
       </Center>
-      <StopButton onClick={goToBack}>Stop</StopButton>
     </Bar>
   );
 };
@@ -96,22 +100,18 @@ const Bar = styled.div`
   width: 100%;
   height: 8%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: black;
   overflow: hidden;
 `;
 
-const Left = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-  padding: 8px 15px;
-`;
-
 const Center = styled.div`
-  display: flex;
-  margin-right: -115px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 15px;
+margin-left: 75px;
 `;
 
 const CameraButton = styled.div`
@@ -121,7 +121,6 @@ const CameraButton = styled.div`
   font-size: 0.9375rem;
   padding: 5px;
   margin-top: 7px;
-  margin-left: 15px;
 
   :hover {
     opacity: 0.7;
@@ -173,13 +172,11 @@ const SwitchList = styled.div`
 `;
 
 const ScreenButton = styled.div`
-  position: relative;
   width: 75px;
   border: none;
   font-size: 0.9375rem;
   padding: 5px;
   margin-top: 7px;
-  margin-left: 15px;
 
   :hover {
     opacity: 0.7;
@@ -193,13 +190,11 @@ const ScreenButton = styled.div`
 
 const DocumentButton = styled.div`
   font-family: "NunitoBold";
-  position: relative;
   width: 75px;
   border: none;
   font-size: 0.9375rem;
   padding: 5px;
   margin-top: 6px;
-  margin-left: 15px;
 
   :hover {
     opacity: 0.7;
@@ -222,10 +217,8 @@ const ChatButton = styled.div`
   font-size: 0.9375rem;
   padding: 5px;
   margin-top: 5px;
-  margin-left: 6px;
 
   img {
-    background-color: white;
     width: 28px;
     height: 28px;
     margin-bottom: -4px;
@@ -241,52 +234,31 @@ const ChatButton = styled.div`
   }
 `;
 
-const FaIcon = styled.i`
-  width: 30px;
-  font-size: calc(16px + 1vmin);
-`;
-
 const StopButton = styled.div`
-  width: 75px;
-  height: 30px;
-  border: none;
-  font-size: 16px;
-  line-height: 20px;
-  margin-right: 20px;
-  background: rgb(251, 33, 117);
-  background: linear-gradient(
-    0deg,
-    rgba(251, 33, 117, 1) 0%,
-    rgba(234, 76, 137, 1) 100%
-  );
+width: 75px;
+border: none;
+font-size: 0.9375rem;
+padding: 5px;
+margin-top: 7px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 4px;
-  outline: none;
-  border-radius: 10px;
-  overflow: hidden;
-  font-family: "NunitoExtraBold";
+.fa-sign-out-alt {
+  color: rgb(251, 33, 117);
+}
 
+:hover {
+  opacity: 0.7;
   cursor: pointer;
+}
 
-  :before {
-    position: absolute;
-    content: "";
-    display: inline-block;
-    top: -180px;
-    left: 0;
-    width: 30px;
-    height: 100%;
-    background-color: #fff;
-  }
-
-  :hover {
-    text-decoration: none;
-    opacity: 0.8;
-    cursor: pointer;
-  }
+* {
+  pointer-events: none;
+}
 `;
+
+const FaIcon = styled.i`
+width: 30px;
+font-size: calc(16px + 1vmin);
+`;
+
 
 export default BottomBar;
